@@ -137,15 +137,7 @@ The LRLE format is as follows:
 * The runs. A run is a horizontal line of pixels of the same color. Each run is:
     - 4 bytes - $BBGGRRCC where BB, GG and RR are the blue, green and red color channels, one byte each. CC is the run length minus one.
 
-Since one of the target uses is low-level, fast, decompression there are format decisions related to that target use:
-
-* Instead of storing run lengths, the run length minus one is used. This can facilitate checking loop conditions in some low-level languages.
-* BBGGRRCC format is used for three reasons:
-    - Having the CC at the least significant byte may facilitate picking it, depending on the language.
-    - BGR color notation is often used in low-level applications.
-    - After picking CC, the BBGGRRCC code can be converted either to 00BBGGRR by right-shifting it 8 bits or to BBGGRR00 by masking the least significant byte, thus being easy to build the common low-level formats ABGR and BGRA.
-* A run cannot span through several image rows. So, a row data does not start until the previous row data ended. This can slightly increase the file size, but it simplifies the decoding algorithms.
-* There are no data terminators.
+Additionally, a run cannot span through several image rows.
 
 As an example, let us consider this 4x3 pixels image.
 
