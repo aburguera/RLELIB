@@ -26,6 +26,9 @@
 
 *RLELib* is Python3 based. Following *Command Line Interface* (CLI) examples are invoked using *python* but, depending on your installation you may have to use *python3* instead.
 
+The CLI can also be used within a Jupyter notebook or Google Colab by simply prepending an exclamation mark (`!`) before the command. If you're using Google Colab, ensure that all files, including images, are accessible from the Colab environment. If files are saved to Colab's temporary storage, be sure to copy them elsewhere before closing the session, as Colab deletes its storage upon disconnection.
+
+
 ### Encoding and decoding images
 
 To encode an image with *Lossy Run Length Encoding* (LRLE) use `imconvert.py source_image_path destination_lrle_path` from the command line. The following example encodes the image `IMG/PEPPERS.png` and creates the file `IMG/PEPPERS.bin` with the [LRLE file format](#the-lrle-format).
@@ -129,6 +132,8 @@ Given an image, the quality, size and decompression cost of its encoded version 
 The top left image corresponds to a threshold of 0 (perfect copy of the original image) and the bottom right was generated with a threshold of 900. The resulting quality decreases as the threshold increases.
 
 ### The LRLE format
+
+LRLE is the name used to refer to the output format of this library. LRLE simply stores images using RLE and it does not adhere to any RLE standard specification. LRLE does not store any information about the lossy or lossless nature of the encoded data.
 
 The LRLE format is as follows:
 
